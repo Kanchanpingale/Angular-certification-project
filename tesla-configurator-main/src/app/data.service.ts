@@ -8,8 +8,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
+  isDisabled: boolean=true;
   private formData = new BehaviorSubject<any>({});
   currentFormData = this.formData.asObservable();
+
 
   constructor() {}
 
@@ -18,6 +20,14 @@ export class DataService {
     console.log( this.formData.next(data))
   }
 
-    
+     // Getter method for the property
+  get myProperty(): boolean {
+    return this.isDisabled;
+  }
+
+  // Setter method for the property
+  set myProperty(value: boolean) {
+    this.isDisabled = value;
+  }
 
 }

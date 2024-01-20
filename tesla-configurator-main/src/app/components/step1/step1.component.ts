@@ -23,6 +23,8 @@ import {CarColors} from './../../formdata.model'
   styleUrl: './step1.component.scss'
 })
 export class Step1Component implements OnInit{
+ // sharedData:boolean=false
+  //isSelectedOptionsEmpty:boolean=false;
   formData: FormData={
     selectedOption1: {
       code: '',
@@ -46,64 +48,9 @@ export class Step1Component implements OnInit{
   selectedOption1: any; // ngModel variable for the first dropdown
   selectedColor: any; // ngModel variable for the second dropdown
   code:any;
-  // options = [
-  //   { value: 'option1', label: 'Option 1' },
-  //   { value: 'option2', label: 'Option 2' },
-  //   { value: 'option3', label: 'Option 3' },
-  // ];
   options1 : any;
 
-  // options1= [
-  //   { code: "S",
-  //     description: "Model S",
-  //     colors: [
-  //       {code: "white", description: "Pearl White Multi-Coat", price: 0},
-  //       {code: "black", description: "Solid Black", price: 0},
-  //       {code: "blue", description: "Deep Blue Metallic", price: 0},
-  //       {code: "grey", description: "Stealth Grey", price: 0},
-  //       {code: "red", description: "Ultra Red", price: 0}
-  //     ]
-  //   },
-  //   { code: "X",
-  //     description: "Model X",
-  //     colors: [
-  //       {code: "white", description: "Pearl White Multi-Coat", price: 0},
-  //       {code: "black", description: "Solid Black", price: 0},
-  //       {code: "blue", description: "Deep Blue Metallic", price: 0},
-  //       {code: "grey", description: "Stealth Grey", price: 0},
-  //       {code: "red", description: "Ultra Red", price: 0}
-  //     ]
-  //   },
-  //   { code: "C",
-  //     description: "Cybertruck",
-  //     colors: [
-  //       {code: "grey", description: "Stainless Steel", price: 0},
-  //       {code: "black", description: "Satin Black", price: 6500},
-  //       {code: "white", description: "Satin White", price: 6500}
-  //     ]
-  //   },
-  //   { code: "3",
-  //     description: "Model 3",
-  //     colors: [
-  //       {code: "white", description: "Pearl White Multi-Coat", price: 1000},
-  //       {code: "black", description: "Solid Black", price: 1500},
-  //       {code: "blue", description: "Deep Blue Metallic", price: 1000},
-  //       {code: "grey", description: "Midnight Silver Metallic", price: 0},
-  //       {code: "red", description: "Red Multi-Coat", price: 2000}
-  //     ]
-  //   },
-  //   { code: "Y",
-  //     description: "Model Y",
-  //     colors: [
-  //       {code: "white", description: "Pearl White Multi-Coat", price: 1000},
-  //       {code: "black", description: "Solid Black", price: 2000},
-  //       {code: "blue", description: "Deep Blue Metallic", price: 1000},
-  //       {code: "grey", description: "Midnight Silver Metallic", price: 0},
-  //       {code: "red", description: "Red Multi-Coat", price: 2000}
-  //     ]
-  //   }
 
-  // ];
   colorsList: { code: string; description: string; price: number; }[] | undefined;
   imageUrl: string ="";
 
@@ -116,15 +63,6 @@ export class Step1Component implements OnInit{
     })
 
     this.dataService.currentFormData.subscribe((data) => (this.formData = data));
-    // console.log(this.selectedOption1);    
-    // let result= this.dataService.getJsonConstant();
-    // console.log(result);
-    // this.options1 = this.dataService.getJsonConstant();
-//     ((data: any)=>
-//       {
-// this.result=data;
-// console.log(this.result)
-//       })
   }
 
 
@@ -139,22 +77,20 @@ export class Step1Component implements OnInit{
   }
 
   getColorsByModelDescription() {
-    //formData.selectedOption1
-    // console.log(this.formData)
-    // const model = this.options1.find((m) => m.description === this.formData.selectedOption1);
-    // this.formData.selectedCode = model?.code;
-    // this.colorsList = model?.colors;
-    // console.log(model ? model.colors : null);   
-    // return model ? model.colors : null; 
-
-    // this.formData.selectedOption1.code
-    
+   
     const model = this.options1.find((m:any) => m.description === this.formData.selectedOption1);
     this.formData.selectedCode = model?.code;
     this.colorsList = model?.colors;
+    //this.isSelectedOptionsEmpty=this.isObjectEmpty(this.formData?.selectedColor)
+    //return this.dataService.sharedData;
     // console.log(this.formData);   
-    return model ? model.colors : null; 
+    return model ? model.colors : null;
+    
   }
+
+  // isObjectEmpty(obj: any): boolean {
+  //   return Object.keys(obj).length === 0;
+  // }
 
   getImage(){
     this.imageUrl = `assets/${this.formData?.selectedColor?.code}.jpg`;
