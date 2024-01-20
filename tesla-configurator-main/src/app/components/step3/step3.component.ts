@@ -21,7 +21,7 @@ export class Step3Component implements OnInit {
       this.formData = data; console.log(this.formData);
       console.log(this.formData);
       this.totalCost = this.formData?.selectedConfig?.price + this.formData.selectedColor?.price;
-      if(this.formData.selectedTowHitch) this.totalCost + 1000;
+      if(this.formData.selectedTowHitch || this.formData.yoke ) this.totalCost + 1000;
     });
   }
 

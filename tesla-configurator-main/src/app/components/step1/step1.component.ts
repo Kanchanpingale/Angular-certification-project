@@ -10,6 +10,8 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormData } from './../../formdata.model'
+import {CarColors} from './../../formdata.model'
 // import { RouterModule } from '@angular/router';
 
 @Component({
@@ -21,7 +23,24 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './step1.component.scss'
 })
 export class Step1Component implements OnInit{
-  formData: any = {};
+  formData: FormData={
+    selectedOption1: {
+      code: '',
+      description: '',
+      colors:<CarColors>{}
+    },
+    selectedColor: <CarColors>{},
+    selectedConfig: {
+      id: '',
+      description: '',
+      range: 0,
+      speed: 0,
+      price: 0,
+      towHitch: false,
+      yoke: false
+    },
+    selectedCode: '',
+    codeDetails: {}  };
   result:any;
   selectedValue: any;
   selectedOption1: any; // ngModel variable for the first dropdown
