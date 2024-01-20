@@ -1,0 +1,32 @@
+
+<div>
+    
+    <h2>Step 2: Select your config and options</h2><br><br>
+    <form>
+      <label for="myDropdown">Config:</label>
+        <select id="myDropdown" name="selectedConfig" [(ngModel)]="formData.selectedConfig" (change)="onConfigChange()">
+          <option *ngFor="let item of configList" [ngValue]="item">{{ item?.description }}</option>
+        </select>
+      <div>
+        <p>You selected: {{ formData?.selectedConfig?.description }}</p>
+      </div>
+      <div>
+        <p>Range: {{ formData?.selectedConfig?.range }}</p>
+      </div>
+      <div *ngIf="this.formData?.codeDetails?.towHitch">
+        <h2>tow hitch: </h2>
+        <label>
+          <input type="checkbox" name="towHitch" id="towHitch" [(ngModel)]="formData.selectedTowHitch"> Check me
+        </label>
+        <p>Checkbox is {{ formData.towHitch ? 'checked' : 'unchecked' }}</p>
+      </div>
+      
+      <div *ngIf="this.formData?.codeDetails?.yoke">
+        <h2>Yoke: </h2>
+        <label>
+          <input type="checkbox" name="yoke" id="yoke" [(ngModel)]="formData.selectedYoke"> Check me
+        </label>
+        <p>Yoke is {{ formData.yoke ? 'checked' : 'unchecked' }}</p>
+      </div>
+    </form>
+  </div>

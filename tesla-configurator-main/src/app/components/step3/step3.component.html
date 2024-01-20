@@ -1,0 +1,22 @@
+
+<div>
+    
+    <h2>Step 3: Summary</h2>
+    <h4>Your Tesla CyberTruck</h4>
+    <!-- <button (click)="onNext()">Next</button> -->
+    <div>
+      {{formData?.selectedConfig?.description}} :  {{formData?.selectedConfig?.price}} </div>
+    <div>
+      {{formData?.selectedConfig?.range}}
+      {{formData?.selectedConfig?.speed}}
+    </div>
+    <div>
+      {{formData.selectedColor?.description}} : {{formData.selectedColor?.price}}
+    </div>
+    <div>
+      {{formData.selectedTowHitch}} : 
+    </div>
+    <div>
+      Total:   {{totalCost }}
+    </div>
+  </div>
