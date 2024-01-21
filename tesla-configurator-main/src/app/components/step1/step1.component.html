@@ -6,15 +6,15 @@
         
   
   <div>
-  <label for="myDropdown">Model:</label>
-      <select id="myDropdown" name="myDropdown" [(ngModel)]="formData.selectedOption1" (change)="getColorsByModelDescription()">
+  <label for="modelSelect">Model:</label>
+      <select id="modelSelect" name="modelSelect" [(ngModel)]="formData.selectedOption1" (change)="getColorsByModelDescription()">
         <option *ngFor="let option of options1" [value]="option.description" >{{ option.description }}</option>
       </select>
     </div>
 
     <div>
-        <label for="myDropdown2">Color:</label>
-            <select id="myDropdown2" name="myDropdown2" [(ngModel)]="formData.selectedColor" (change)="getImage()">
+        <label for="colorSelect">Color:</label>
+            <select id="colorSelect" name="colorSelect" [(ngModel)]="formData.selectedColor" (change)="getImage()">
               <option *ngFor="let option of colorsList" [ngValue]="option">{{ option.code }}</option>
             </select>
           </div>
