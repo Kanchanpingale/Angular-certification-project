@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { CarColors, CodeDetails, ConfigDetails, FormData} from '../../formdata.model';
 
 @Component({
   selector: 'app-step2',
@@ -17,8 +18,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './step2.component.scss'
 })
 export class Step2Component implements OnInit {
-  formData: any = {};
-  configList: any;
+  formData: FormData={
+    selectedConfig: <ConfigDetails>{},
+    codeDetails: <CodeDetails>{},
+    selectedOption1: {
+      code: '',
+      description: '',
+      colors: <CarColors>{}
+    },
+    selectedColor: <CarColors>{},
+    selectedCode: '',
+    selectedYoke: false,
+    selectedTowHitch: false
+  };
+  configList: CarColors[]=[];
 
 constructor(private router: Router, private dataService: DataService, private route: ActivatedRoute, private  http: HttpClient) {}
 
@@ -44,8 +57,6 @@ ngOnInit() {
 // {
 // this.code=this.formData.options1.description
 // }
-
-
   
 }
 

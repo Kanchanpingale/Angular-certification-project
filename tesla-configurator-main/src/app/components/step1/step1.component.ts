@@ -10,7 +10,7 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormData } from './../../formdata.model'
+import { CodeDetails, FormData } from './../../formdata.model'
 import {CarColors} from './../../formdata.model'
 // import { RouterModule } from '@angular/router';
 
@@ -38,15 +38,16 @@ export class Step1Component implements OnInit{
       range: 0,
       speed: 0,
       price: 0,
-      towHitch: false,
-      yoke: false
     },
     selectedCode: '',
-    codeDetails: {}  };
+    codeDetails: <CodeDetails>{},
+    selectedYoke: false,
+    selectedTowHitch: false
+  };
   result:any;
-  selectedValue: any;
-  selectedOption1: any; // ngModel variable for the first dropdown
-  selectedColor: any; // ngModel variable for the second dropdown
+  //selectedValue: any;
+  // selectedOption1: any; // ngModel variable for the first dropdown
+  // selectedColor: any; // ngModel variable for the second dropdown
   code:any;
   options1 : any;
 
@@ -58,8 +59,8 @@ export class Step1Component implements OnInit{
   constructor(private router: Router, private dataService: DataService,private  http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get("http://localhost:62234/models").subscribe(res=>{
-      this.options1 = res;
+    this.http.get("/models").subscribe(res=>{
+      this.options1 = res;  
     })
 
     this.dataService.currentFormData.subscribe((data) => (this.formData = data));
@@ -80,20 +81,21 @@ export class Step1Component implements OnInit{
    
     const model = this.options1.find((m:any) => m.description === this.formData.selectedOption1);
     this.formData.selectedCode = model?.code;
-    this.colorsList = model?.colors;
-    //this.isSelectedOptionsEmpty=this.isObjectEmpty(this.formData?.selectedColor)
-    //return this.dataService.sharedData;
-    // console.log(this.formData);   
+    this.colorsList = model?.colors;  
+    if(this.formData?.selectedColor != undefined && this.formData?.selectedOption1)
+    this.dataService.sendData(this.isObjectEmpty(this.formData?.selectedColor) && this.isObjectEmpty(this.formData?.selectedOption1)) 
     return model ? model.colors : null;
     
   }
 
-  // isObjectEmpty(obj: any): boolean {
-  //   return Object.keys(obj).length === 0;
-  // }
+  isObjectEmpty(obj: any): boolean {
+    return Object.keys(obj).length === 0;
+  }
 
   getImage(){
     this.imageUrl = `assets/${this.formData?.selectedColor?.code}.jpg`;
+    if(this.formData?.selectedColor != undefined && this.formData?.selectedOption1)
+    this.dataService.sendData(this.isObjectEmpty(this.formData?.selectedColor) && this.isObjectEmpty(this.formData?.selectedOption1));
     // console.log(this.imageUrl)
   }
   

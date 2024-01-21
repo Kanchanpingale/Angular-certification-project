@@ -3,24 +3,17 @@ export interface FormData {
     {
         code:string,
         description:string,
-        colors:CarColors
-
-       
+        colors:CarColors  
     }
     selectedColor:CarColors,
-    selectedConfig:
-    {
-        id: string,
-        description:string,
-        range:number,
-        speed:number,
-        price:number,
-        towHitch: boolean,
-        yoke:boolean
-    }
+    selectedConfig:ConfigDetails
+  
     //selectedColor: object;
     selectedCode: string,
-    codeDetails: object,
+    codeDetails: CodeDetails,
+    selectedYoke: boolean,
+    selectedTowHitch:boolean
+
 }
     
    export interface CarColors{
@@ -29,5 +22,20 @@ export interface FormData {
     price:number
    }
     
+   export interface CodeDetails{
+    configs: [ConfigDetails],
+    towHitch: boolean,
+    yoke:boolean
+   }
+   export interface ConfigDetails{
+    
+        id: string,
+        description:string,
+        range:number,
+        speed:number,
+        price:number,
+        
+    
+   }
 
   

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 //import { HttpClient } from '@angular/common/http';
 // import {handlers} from './../main';
 
@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  isDisabled: boolean=true;
+  //_isFlagSet: boolean=false;
   private formData = new BehaviorSubject<any>({});
   currentFormData = this.formData.asObservable();
 
@@ -19,15 +19,14 @@ export class DataService {
     this.formData.next(data);
     console.log( this.formData.next(data))
   }
+  private dataSubject = new Subject<boolean>();
 
-     // Getter method for the property
-  get myProperty(): boolean {
-    return this.isDisabled;
+  // Observable to allow subscribing to the Subject
+  data$ = this.dataSubject.asObservable();
+
+  // Method to update the Subject with new data
+  sendData(data: boolean) {
+    this.dataSubject.next(data);
   }
-
-  // Setter method for the property
-  set myProperty(value: boolean) {
-    this.isDisabled = value;
-  }
-
+ 
 }
