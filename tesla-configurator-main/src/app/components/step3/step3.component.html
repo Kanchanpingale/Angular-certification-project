@@ -5,18 +5,21 @@
     <h4>Your Tesla CyberTruck</h4>
     <!-- <button (click)="onNext()">Next</button> -->
     <div>
-      {{formData?.selectedConfig?.description}} :  {{formData?.selectedConfig?.price}} </div>
+      {{formData?.selectedConfig?.description}} : &nbsp;&nbsp;&nbsp;<span>{{formData?.selectedConfig?.price |currency:'USD'}}</span>  </div>
     <div>
-      {{formData?.selectedConfig?.range}}
-      {{formData?.selectedConfig?.speed}}
+      Range: &nbsp; <span>{{formData?.selectedConfig?.range}}miles</span>
+      -&nbsp;Max Speed: &nbsp; <span>{{formData?.selectedConfig?.speed}}</span>
     </div>
     <div>
-      {{formData.selectedColor?.description}} : {{formData.selectedColor?.price}}
+      {{formData.selectedColor?.description}} : &nbsp;&nbsp;&nbsp;&nbsp;<span>{{formData.selectedColor?.price |currency:'USD'}}</span>
+    </div>
+    <div *ngIf="formData.selectedTowHitch">
+      <span> Tow Hitch package &nbsp;&nbsp;&nbsp;</span><span>$1000 :</span>
+    </div>
+    <div *ngIf="formData.selectedYoke">
+      <span>Yoke package &nbsp;&nbsp;&nbsp;</span><span>$1000 :</span>
     </div>
     <div>
-      {{formData.selectedTowHitch}} : 
-    </div>
-    <div>
-      Total Cost:   {{totalCost }}
+      <h3>Total Cost:   {{totalCost }}</h3>
     </div>
   </div>

@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../data.service';
 import { CarColors, CodeDetails, ConfigDetails, FormData} from '../../formdata.model';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 //import { handlers } from '../../../main';
 
 @Component({
   selector: 'app-step3',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
+  providers: [CurrencyPipe],
   templateUrl: './step3.component.html',
   styleUrl: './step3.component.scss'
 })
@@ -34,9 +36,18 @@ export class Step3Component implements OnInit {
       this.formData = data; console.log(this.formData);
       console.log(this.formData);
       this.totalCost = this.formData?.selectedConfig?.price + this.formData.selectedColor?.price;
-      if(this.formData.selectedTowHitch || this.formData.selectedYoke) 
+      if(this.formData.selectedTowHitch && this.formData.selectedYoke) 
       {
-       this.totalCost= this.totalCost + 1000;
+       this.totalCost= this.totalCost + 2000;
+       
+      }
+      else if(this.formData.selectedTowHitch ||  this.formData.selectedYoke)
+      {
+        this.totalCost= this.totalCost + 1000;
+      }
+      
+      else{
+        this.totalCost= this.totalCost;
       }
     });
   }
