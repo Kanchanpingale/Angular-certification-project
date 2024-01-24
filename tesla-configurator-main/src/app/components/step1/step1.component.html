@@ -2,7 +2,7 @@
 <div>
     <!-- <h2>Step 1</h2> -->
     <h2>Step 1: Choose your model and color</h2><br><br>
-    <form>
+    <form style="width: 500px !important;">
         
   
   <div>
@@ -18,13 +18,13 @@
               <option *ngFor="let option of colorsList" [ngValue]="option">{{ option.code }}</option>
             </select>
           </div>
-      
-         
-          <div>
-            <img [src]="imageUrl" alt="Image" width="200" height="150">
-          </div>
- 
-       
+                
       </form>
+      
+      <div>
+        <!-- <img src="assets/images/black.jpg" alt="Blue Image"> -->
+        <img [src]="imageUrl" alt="Image" width="200" height="150">
+      </div>
+
     
   </div>

@@ -93,10 +93,11 @@ export class Step1Component implements OnInit{
   }
 
   getImage(){
-    this.imageUrl = `assets/${this.formData?.selectedColor?.code}.jpg`;
+    this.imageUrl = `assets/images/${this.formData?.selectedCode}/${this.formData?.selectedColor?.code}.jpg`
+   
     if(this.formData?.selectedColor != undefined && this.formData?.selectedOption1)
     this.dataService.sendData(this.isObjectEmpty(this.formData?.selectedColor) && this.isObjectEmpty(this.formData?.selectedOption1));
     // console.log(this.imageUrl)
   }
-  
+
 }
